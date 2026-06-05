@@ -1,6 +1,5 @@
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
-import { LinkTo } from "@ember/routing";
 
 export default <template>
   <div class="course-reviews-page">
@@ -8,9 +7,9 @@ export default <template>
       <h2>课程评价</h2>
       <div class="course-review-header-actions">
         {{#if @controller.isAdmin}}
-          <LinkTo @route="courseReviews.admin" class="btn">审核</LinkTo>
+          <a href="/course-reviews/admin" class="btn">审核</a>
         {{/if}}
-        <LinkTo @route="courseReviews.new" class="btn btn-primary">发布评价</LinkTo>
+        <a href="/course-reviews/new" class="btn btn-primary">发布评价</a>
       </div>
     </div>
 

@@ -1,13 +1,12 @@
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
-import { LinkTo } from "@ember/routing";
 import { eq } from "discourse/truth-helpers";
 
 export default <template>
   <div class="course-reviews-page">
     <div class="course-reviews-header">
       <h2>课程评价审核</h2>
-      <LinkTo @route="courseReviews.index" class="btn">返回列表</LinkTo>
+      <a href="/course-reviews" class="btn">返回列表</a>
     </div>
 
     {{#if @controller.error}}
