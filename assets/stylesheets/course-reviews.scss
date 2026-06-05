@@ -5,6 +5,7 @@
 }
 
 .course-reviews-header,
+.course-reviews-content-header,
 .course-reviews-filters,
 .course-review-card-meta,
 .course-review-summary-grid,
@@ -18,6 +19,11 @@
 .course-reviews-header {
   justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+.course-reviews-content-header {
+  justify-content: space-between;
+  margin: 1rem 0;
 }
 
 .course-reviews-tabs {
