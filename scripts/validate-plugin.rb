@@ -32,9 +32,13 @@ required_files = %w[
   assets/javascripts/discourse/components/course-review-form.gjs
   assets/javascripts/discourse/connectors/composer-fields/course-review-composer.gjs
   assets/javascripts/discourse/connectors/topic-above-post-stream/course-review-summary.gjs
-  assets/javascripts/discourse/routes/course-reviews-index.js
-  assets/javascripts/discourse/routes/course-reviews-show.js
-  assets/javascripts/discourse/routes/course-reviews-admin.js
+  assets/javascripts/discourse/routes/course-reviews/index.js
+  assets/javascripts/discourse/routes/course-reviews/new.js
+  assets/javascripts/discourse/routes/course-reviews/show.js
+  assets/javascripts/discourse/routes/course-reviews/admin.js
+  assets/javascripts/discourse/controllers/course-reviews/index.js
+  assets/javascripts/discourse/controllers/course-reviews/show.js
+  assets/javascripts/discourse/controllers/course-reviews/admin.js
   assets/javascripts/discourse/templates/course-reviews.gjs
   assets/javascripts/discourse/templates/course-reviews/index.gjs
   assets/javascripts/discourse/templates/course-reviews/show.gjs
@@ -129,6 +133,13 @@ deprecated_template_files = %w[
   assets/javascripts/discourse/templates/course-reviews/show.hbs
   assets/javascripts/discourse/templates/course-reviews/admin.hbs
   assets/javascripts/discourse/templates/course-reviews/new.hbs
+  assets/javascripts/discourse/routes/course-reviews-index.js
+  assets/javascripts/discourse/routes/course-reviews-new.js
+  assets/javascripts/discourse/routes/course-reviews-show.js
+  assets/javascripts/discourse/routes/course-reviews-admin.js
+  assets/javascripts/discourse/controllers/course-reviews-index.js
+  assets/javascripts/discourse/controllers/course-reviews-show.js
+  assets/javascripts/discourse/controllers/course-reviews-admin.js
 ]
 
 deprecated_template_files.each do |path|
