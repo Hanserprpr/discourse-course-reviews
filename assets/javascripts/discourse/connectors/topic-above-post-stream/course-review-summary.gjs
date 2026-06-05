@@ -2,7 +2,10 @@ import Component from "@glimmer/component";
 
 export default class CourseReviewSummaryConnector extends Component {
   get review() {
-    return this.args.outletArgs.topic.course_review;
+    const outletArgs = this.args && this.args.outletArgs;
+    const topic = outletArgs && outletArgs.topic;
+
+    return topic && topic.course_review;
   }
 
   <template>
