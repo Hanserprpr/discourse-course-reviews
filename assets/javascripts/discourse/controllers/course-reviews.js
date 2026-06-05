@@ -10,6 +10,6 @@ export default class CourseReviewsController extends Controller {
   }
 
   get filterMode() {
-    return "latest";
+    return "course-reviews";
   }
 }
