@@ -62,7 +62,7 @@ class ::CourseReviewReview < ActiveRecord::Base
 
     if topic_id.present? && post_id.present?
       post.update!(raw: build_raw)
-      topic.update!(title: build_topic_title, visible: true)
+      topic.update!(title: build_topic_title, visible: false)
       return
     end
 
@@ -75,6 +75,7 @@ class ::CourseReviewReview < ActiveRecord::Base
     )
     created_post = creator.create!
     update_columns(topic_id: created_post.topic_id, post_id: created_post.id, updated_at: Time.zone.now)
+    created_post.topic.update!(visible: false)
   end
 
   def hide_discourse_topic!
