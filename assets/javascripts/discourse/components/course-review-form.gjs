@@ -93,7 +93,7 @@ export default class CourseReviewForm extends Component {
 
     const response = await fetch(
       `/course-reviews/courses/search.json?q=${encodeURIComponent(this.course_name)}`,
-      { credentials: "same-origin" }
+      { credentials: "same-origin", headers: { Accept: "application/json" } }
     );
     const payload = await response.json();
     this.courseOptions = payload.courses || [];
@@ -124,7 +124,7 @@ export default class CourseReviewForm extends Component {
 
     const response = await fetch(
       `/course-reviews/courses/search.json?q=${encodeURIComponent(this.teacher_name)}`,
-      { credentials: "same-origin" }
+      { credentials: "same-origin", headers: { Accept: "application/json" } }
     );
     const payload = await response.json();
     this.teacherOptions = payload.teachers || [];
@@ -169,6 +169,7 @@ export default class CourseReviewForm extends Component {
       method: "POST",
       credentials: "same-origin",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
         "X-CSRF-Token": this.csrfToken,
       },

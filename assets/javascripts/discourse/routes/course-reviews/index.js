@@ -15,6 +15,7 @@ export default class CourseReviewsIndexRoute extends DiscourseRoute {
     const query = new URLSearchParams(params).toString();
     return fetch(`/course-reviews.json${query ? `?${query}` : ""}`, {
       credentials: "same-origin",
+      headers: { Accept: "application/json" },
     }).then((response) => response.json());
   }
 }

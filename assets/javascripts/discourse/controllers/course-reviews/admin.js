@@ -15,6 +15,7 @@ export default class CourseReviewsAdminController extends Controller {
       method: "PUT",
       credentials: "same-origin",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
         "X-CSRF-Token": this.csrfToken,
       },

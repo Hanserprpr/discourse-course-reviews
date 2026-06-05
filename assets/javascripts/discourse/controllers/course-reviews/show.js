@@ -29,11 +29,12 @@ export default class CourseReviewsShowController extends Controller {
       `/course-reviews/courses/${this.model.course.id}/merge.json`,
       {
         method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": this.csrfToken,
-        },
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-CSRF-Token": this.csrfToken,
+      },
         body: JSON.stringify({ target_course_id: this.targetCourseId }),
       }
     );
