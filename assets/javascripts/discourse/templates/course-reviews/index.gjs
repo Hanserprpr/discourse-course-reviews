@@ -1,6 +1,3 @@
-import { fn } from "@ember/helper";
-import { on } from "@ember/modifier";
-
 export default <template>
   <div class="course-reviews-page">
     <div class="course-reviews-header">
@@ -13,15 +10,15 @@ export default <template>
       </div>
     </div>
 
-    <form class="course-reviews-filters" {{on "submit" @controller.applyFilters}}>
+    <form class="course-reviews-filters" method="get" action="/course-reviews">
       <input
+        name="q"
         value={{@controller.q}}
         class="course-reviews-search"
         placeholder="搜索课程、老师或学院"
-        {{on "input" (fn @controller.setValue "q")}}
       />
 
-      <select value={{@controller.course_type}} {{on "change" (fn @controller.setValue "course_type")}}>
+      <select name="course_type" value={{@controller.course_type}}>
         <option value="">全部类型</option>
         <option value="general">通识课</option>
         <option value="major">专业课</option>
@@ -29,14 +26,14 @@ export default <template>
         <option value="elective">选修课</option>
       </select>
 
-      <select value={{@controller.recommendation}} {{on "change" (fn @controller.setValue "recommendation")}}>
+      <select name="recommendation" value={{@controller.recommendation}}>
         <option value="">全部建议</option>
         <option value="recommend">推荐</option>
         <option value="depends">看情况</option>
         <option value="cautious">谨慎选</option>
       </select>
 
-      <select value={{@controller.workload}} {{on "change" (fn @controller.setValue "workload")}}>
+      <select name="workload" value={{@controller.workload}}>
         <option value="">全部工作量</option>
         <option value="light">轻</option>
         <option value="medium">中等</option>
