@@ -1,7 +1,7 @@
 import { on } from "@ember/modifier";
 
 export default <template>
-  <div class="course-reviews-page">
+  <div>
     {{#if @controller.model.merged_into_id}}
       <p>该课程已合并到新的课程条目。</p>
       <a class="btn btn-primary" href="/course-reviews/courses/{{@controller.model.merged_into_id}}">查看合并后的课程</a>

@@ -3,7 +3,7 @@ import { on } from "@ember/modifier";
 import { eq } from "discourse/truth-helpers";
 
 export default <template>
-  <div class="course-reviews-page">
+  <div>
     <div class="course-reviews-header">
       <h2>课程评价审核</h2>
       <a href="/course-reviews" class="btn">返回列表</a>

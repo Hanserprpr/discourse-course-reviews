@@ -20,6 +20,32 @@
   margin-bottom: 1rem;
 }
 
+.course-reviews-tabs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--primary-low);
+}
+
+.course-reviews-tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.7rem;
+  border-radius: 4px;
+  color: var(--primary);
+  background: var(--primary-very-low);
+}
+
+.course-reviews-tabs a:hover,
+.course-reviews-tabs a:focus {
+  background: var(--primary-low);
+  text-decoration: none;
+}
+
 .course-reviews-filters {
   margin-bottom: 1rem;
 }

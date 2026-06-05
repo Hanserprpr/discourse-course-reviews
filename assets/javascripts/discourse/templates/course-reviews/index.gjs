@@ -1,15 +1,5 @@
 export default <template>
-  <div class="course-reviews-page">
-    <div class="course-reviews-header">
-      <h2>课程评价</h2>
-      <div class="course-review-header-actions">
-        {{#if @controller.isAdmin}}
-          <a href="/course-reviews/admin" class="btn">审核</a>
-        {{/if}}
-        <a href="/course-reviews/new" class="btn btn-primary">发布评价</a>
-      </div>
-    </div>
-
+  <div>
     <form class="course-reviews-filters" method="get" action="/course-reviews">
       <input
         name="q"
