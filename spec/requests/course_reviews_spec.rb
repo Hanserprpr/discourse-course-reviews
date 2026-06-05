@@ -4,11 +4,14 @@ require "rails_helper"
 
 describe "Course reviews", type: :request do
   fab!(:user)
+  fab!(:allowed_group) { Fabricate(:group) }
   fab!(:category) { Fabricate(:category, slug: "course-reviews") }
 
   before do
     SiteSetting.course_reviews_enabled = true
     SiteSetting.course_reviews_category_slug = category.slug
+    SiteSetting.course_reviews_allowed_groups = allowed_group.id
+    allowed_group.add(user)
     sign_in(user)
   end
 
@@ -61,5 +64,24 @@ describe "Course reviews", type: :request do
 
     expect(response.status).to eq(200)
     expect(response.parsed_body["reviews"].map { |item| item["id"] }).to include(review.id)
+  end
+
+  it "blocks users outside the allowed course review groups" do
+    other_user = Fabricate(:user)
+    sign_in(other_user)
+
+    get "/course-reviews.json"
+
+    expect(response.status).to eq(403)
+  end
+
+  it "allows admins even when no allowed groups are configured" do
+    SiteSetting.course_reviews_allowed_groups = ""
+    admin = Fabricate(:admin)
+    sign_in(admin)
+
+    get "/course-reviews.json"
+
+    expect(response.status).to eq(200)
   end
 end

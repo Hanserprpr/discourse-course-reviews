@@ -3,6 +3,7 @@ import { service } from "@ember/service";
 import CourseReviewForm from "../../components/course-review-form";
 
 export default class CourseReviewComposerConnector extends Component {
+  @service site;
   @service siteSettings;
 
   get shouldShow() {
@@ -12,6 +13,7 @@ export default class CourseReviewComposerConnector extends Component {
     const slug = category && category.slug ? category.slug : category;
 
     return (
+      this.site.can_view_course_reviews &&
       this.siteSettings.course_reviews_enabled &&
       slug === this.siteSettings.course_reviews_category_slug
     );

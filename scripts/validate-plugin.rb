@@ -27,6 +27,7 @@ required_files = %w[
   config/settings.yml
   config/locales/server.en.yml
   config/locales/client.en.yml
+  app/lib/course_reviews/access.rb
   assets/javascripts/discourse/course-reviews-route-map.js
   assets/javascripts/discourse/initializers/course-reviews.js
   assets/javascripts/discourse/components/course-review-form.gjs
@@ -100,6 +101,11 @@ end
 review_model = assert_file("app/models/course_review_review.rb").read
 %w[RECOMMENDATIONS WORKLOADS DIFFICULTIES ATTENDANCE ASSESSMENT_METHODS SUITABLE_FOR STATUSES].each do |constant|
   fail_check("review model missing #{constant}") unless review_model.include?(constant)
+end
+
+access = assert_file("app/lib/course_reviews/access.rb").read
+%w[course_reviews_allowed_groups_map in_any_groups?].each do |token|
+  fail_check("access policy missing #{token}") unless access.include?(token)
 end
 
 forbidden_patterns = [

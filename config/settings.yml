@@ -5,6 +5,13 @@ plugins:
   course_reviews_category_slug:
     default: "course-reviews"
     client: true
+  course_reviews_allowed_groups:
+    type: group_list
+    list_type: compact
+    default: ""
+    allow_any: false
+    refresh: true
+    area: "group_permissions"
   course_reviews_low_trust_level_requires_review:
     default: 1
     client: false

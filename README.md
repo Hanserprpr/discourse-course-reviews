@@ -46,9 +46,11 @@ Rebuild Discourse:
 
 - `course_reviews_enabled`: enables the plugin.
 - `course_reviews_category_slug`: slug for the category where the structured review composer notice appears. Default: `course-reviews`.
+- `course_reviews_allowed_groups`: groups allowed to view and publish course reviews. Admins can always access. Leave empty to restrict the module to admins only.
 - `course_reviews_low_trust_level_requires_review`: users at or below this trust level submit reviews as pending.
 
 Create a Discourse category whose slug matches `course_reviews_category_slug`.
+If course review topics should also be private, restrict that Discourse category to the same groups configured in `course_reviews_allowed_groups`.
 
 For a deployer-facing checklist, see `ADMIN_CHECKLIST.md`.
 

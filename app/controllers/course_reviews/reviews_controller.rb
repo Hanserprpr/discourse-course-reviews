@@ -2,6 +2,7 @@ class ::CourseReviews::ReviewsController < ::ApplicationController
   requires_plugin CourseReviews::PLUGIN_NAME
 
   before_action :ensure_logged_in
+  before_action :ensure_can_access_course_reviews
 
   def pending
     raise Discourse::InvalidAccess.new unless guardian.is_admin?
@@ -69,6 +70,10 @@ class ::CourseReviews::ReviewsController < ::ApplicationController
   end
 
   private
+
+  def ensure_can_access_course_reviews
+    CourseReviews::Access.ensure_can_access!(guardian)
+  end
 
   def can_edit_review?(review)
     guardian.is_admin? || review.user_id == current_user.id

@@ -36,7 +36,9 @@ hooks:
 
 - `course_reviews_enabled`: `true`
 - `course_reviews_category_slug`: 设置为课程评价分类 slug，例如 `course-reviews`
+- `course_reviews_allowed_groups`: 选择允许查看和发布课程评价的用户组；管理员始终可访问，留空则只有管理员可访问
 - `course_reviews_low_trust_level_requires_review`: 建议初始值 `1`
+- 如果课程评价生成的话题也要仅组内可见，请在 Discourse 分类权限里把课程评价分类限制给同一用户组
 
 ## 验收流程
 

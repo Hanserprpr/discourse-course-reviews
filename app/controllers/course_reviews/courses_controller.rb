@@ -1,7 +1,8 @@
 class ::CourseReviews::CoursesController < ::ApplicationController
   requires_plugin CourseReviews::PLUGIN_NAME
 
-  before_action :ensure_logged_in, only: %i[merge]
+  before_action :ensure_logged_in
+  before_action :ensure_can_access_course_reviews
 
   def index
     courses = CourseReviewCourse.active.includes(:teachers, :summaries, :reviews)
@@ -95,6 +96,10 @@ class ::CourseReviews::CoursesController < ::ApplicationController
   end
 
   private
+
+  def ensure_can_access_course_reviews
+    CourseReviews::Access.ensure_can_access!(guardian)
+  end
 
   def apply_filters(courses)
     courses = courses.where("course_review_courses.name ILIKE :q OR course_review_courses.department ILIKE :q", q: "%#{CourseReviewCourse.sanitize_sql_like(params[:q])}%") if params[:q].present?

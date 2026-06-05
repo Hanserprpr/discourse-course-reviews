@@ -15,6 +15,7 @@ after_initialize do
   end
 
   %w[
+    app/lib/course_reviews/access.rb
     app/lib/course_reviews/labels.rb
     app/models/course_review_course.rb
     app/models/course_review_teacher.rb
@@ -29,8 +30,13 @@ after_initialize do
   ].each { |path| load File.expand_path(path, __dir__) }
 
   add_to_serializer(:site, :course_reviews_category_slug) { SiteSetting.course_reviews_category_slug }
+  add_to_serializer(:site, :can_view_course_reviews) do
+    CourseReviews::Access.can_access?(scope && scope.user)
+  end
 
   add_to_serializer(:topic_view, :course_review, respect_plugin_enabled: false) do
+    next nil if !CourseReviews::Access.can_access?(scope && scope.user)
+
     review = CourseReviewReview.includes(:course, :teacher).find_by(topic_id: object.topic.id)
     review ? CourseReviewReviewSerializer.new(review, scope: scope, root: false).as_json : nil
   end
