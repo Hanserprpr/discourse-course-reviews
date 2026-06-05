@@ -1,7 +1,11 @@
-/* eslint-disable discourse/no-unnecessary-tracked */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { Input, Textarea } from "@ember/component";
+import { fn } from "@ember/helper";
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
+
+/* eslint-disable discourse/no-unnecessary-tracked */
 
 const MULTI_FIELDS = ["assessment_methods", "suitable_for"];
 
@@ -217,4 +221,101 @@ export default class CourseReviewForm extends Component {
   errorMessage(payload, fallback) {
     return payload && payload.errors ? payload.errors.join(", ") : fallback;
   }
+
+  <template>
+    {{#if this.error}}
+      <div class="alert alert-error">{{this.error}}</div>
+    {{/if}}
+
+    <form class="course-review-form" {{on "submit" this.submit}}>
+      <label>课程
+        <input
+          value={{this.course_name}}
+          list="course-review-course-options"
+          required
+          {{on "input" this.searchCourses}}
+          {{on "change" this.selectCourse}}
+        />
+      </label>
+      <datalist id="course-review-course-options">
+        {{#each this.courseOptions as |course|}}
+          <option value={{course.name}}>{{course.department}}</option>
+        {{/each}}
+      </datalist>
+
+      <label>授课老师
+        <input
+          value={{this.teacher_name}}
+          list="course-review-teacher-options"
+          required
+          {{on "input" this.searchTeachers}}
+          {{on "change" this.selectTeacher}}
+        />
+      </label>
+      <datalist id="course-review-teacher-options">
+        {{#each this.teacherOptions as |teacher|}}
+          <option value={{teacher.name}}>{{teacher.department}}</option>
+        {{/each}}
+      </datalist>
+      <label>学院<Input @value={{this.department}} /></label>
+      <label>学期<Input @value={{this.term}} placeholder="例如 2026春" required={{true}} /></label>
+
+      <label>课程类型
+        <select value={{this.course_type}} {{on "change" (fn this.setValue "course_type")}}>
+          {{#each this.courseTypes as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
+        </select>
+      </label>
+
+      <label>是否推荐
+        <select value={{this.recommendation}} {{on "change" (fn this.setValue "recommendation")}}>
+          {{#each this.recommendations as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
+        </select>
+      </label>
+
+      <label>工作量
+        <select value={{this.workload}} {{on "change" (fn this.setValue "workload")}}>
+          {{#each this.levels as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
+        </select>
+      </label>
+
+      <label>难度
+        <select value={{this.difficulty}} {{on "change" (fn this.setValue "difficulty")}}>
+          {{#each this.difficulties as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
+        </select>
+      </label>
+
+      <label>点名
+        <select value={{this.attendance}} {{on "change" (fn this.setValue "attendance")}}>
+          {{#each this.attendanceOptions as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
+        </select>
+      </label>
+
+      <fieldset>
+        <legend>考核方式</legend>
+        {{#each this.assessmentOptions as |item|}}
+          <label class="course-review-check">
+            <input type="checkbox" value={{item.value}} {{on "change" (fn this.toggleMulti "assessment_methods" item.value)}} />
+            {{item.label}}
+          </label>
+        {{/each}}
+      </fieldset>
+
+      <fieldset>
+        <legend>适合人群</legend>
+        {{#each this.suitableOptions as |item|}}
+          <label class="course-review-check">
+            <input type="checkbox" value={{item.value}} {{on "change" (fn this.toggleMulti "suitable_for" item.value)}} />
+            {{item.label}}
+          </label>
+        {{/each}}
+      </fieldset>
+
+      <label>一句话建议<Input @value={{this.one_line_advice}} required={{true}} /></label>
+      <label>详细评价<Textarea @value={{this.detail_text}} /></label>
+
+      <button class="btn btn-primary" type="submit" disabled={{this.saving}}>
+        {{if this.saving "提交中..." "发布评价"}}
+      </button>
+    </form>
+  </template>
 }

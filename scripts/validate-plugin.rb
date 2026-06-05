@@ -29,9 +29,9 @@ required_files = %w[
   config/locales/client.en.yml
   assets/javascripts/discourse/course-reviews-route-map.js
   assets/javascripts/discourse/initializers/course-reviews.js
-  assets/javascripts/discourse/components/course-review-form.js
-  assets/javascripts/discourse/templates/components/course-review-form.hbs
-  assets/javascripts/discourse/connectors/composer-fields/course-review-composer.hbs
+  assets/javascripts/discourse/components/course-review-form.gjs
+  assets/javascripts/discourse/connectors/composer-fields/course-review-composer.gjs
+  assets/javascripts/discourse/connectors/topic-above-post-stream/course-review-summary.gjs
   assets/javascripts/discourse/routes/course-reviews-index.js
   assets/javascripts/discourse/routes/course-reviews-show.js
   assets/javascripts/discourse/routes/course-reviews-admin.js
@@ -73,7 +73,7 @@ plugin_rb = assert_file("plugin.rb").read
   fail_check("plugin.rb missing route #{route}") unless plugin_rb.include?(route)
 end
 
-form = assert_file("assets/javascripts/discourse/templates/components/course-review-form.hbs").read
+form = assert_file("assets/javascripts/discourse/components/course-review-form.gjs").read
 %w[
   course_name
   teacher_name
@@ -114,6 +114,18 @@ implementation_files.each do |file|
   forbidden_patterns.each do |pattern|
     fail_check("#{file} contains forbidden pattern #{pattern.inspect}") if text.match?(pattern)
   end
+end
+
+deprecated_template_files = %w[
+  assets/javascripts/discourse/templates/components/course-review-form.hbs
+  assets/javascripts/discourse/components/course-review-form.js
+  assets/javascripts/discourse/connectors/composer-fields/course-review-composer.hbs
+  assets/javascripts/discourse/connectors/composer-fields/course-review-composer.js
+  assets/javascripts/discourse/connectors/topic-above-post-stream/course-review-summary.hbs
+]
+
+deprecated_template_files.each do |path|
+  fail_check("#{path} should be migrated to .gjs") if ROOT.join(path).exist?
 end
 
 puts "course reviews plugin validation passed"

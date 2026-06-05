@@ -54,6 +54,7 @@
   - Discourse 风格样式。
   - 前端实现已去掉 optional chaining，降低目标 Discourse 构建链兼容风险。
   - 初始化器路径调整为 `assets/javascripts/discourse/initializers/course-reviews.js`，贴近当前 Discourse 插件结构。
+  - 已将课程评价表单组件和 connector 从旧式 `.js + .hbs` / `.hbs` connector 迁移到 `.gjs`，用于消除 Discourse `component-template-resolving` deprecation 风险。
 - 文档与测试：
   - README 安装和 API 说明。
   - 模型 spec 覆盖枚举、无数字评分字段、topic 标题/正文生成。
@@ -74,6 +75,7 @@
 - 已在真实 Discourse checkout 中运行插件迁移：`LOAD_PLUGINS=1 bundle _4.0.11_ exec rails db:migrate RAILS_ENV=test`，插件表创建成功。
 - 已在真实 Discourse checkout 中运行插件后端 specs：`LOAD_PLUGINS=1 bundle _4.0.11_ exec rspec plugins/discourse-course-reviews/spec`，结果 `4 examples, 0 failures`。
 - 已在真实 Discourse checkout 中运行前端 lint：`pnpm eslint plugins/discourse-course-reviews/assets/javascripts`，结果通过。
+- 针对管理员通知 `discourse.component-template-resolving`，已迁移前端组件/connector 到 `.gjs` 并再次通过 `pnpm eslint plugins/discourse-course-reviews/assets/javascripts`。
 - 已启动真实 Discourse development server：`LOAD_PLUGINS=1 bin/rails server -p 4200 -b 127.0.0.1`，插件成功编译加载。
 - 已确认 Rails 路由表包含全部 JSON API 和前端 HTML fallback 路由。
 - 已完成 HTTP smoke：
