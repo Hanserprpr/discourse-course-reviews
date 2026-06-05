@@ -1,0 +1,12 @@
+en:
+  site_settings:
+    course_reviews_enabled: "Enable the course reviews plugin."
+    course_reviews_category_slug: "Category slug where the structured course review composer is shown."
+    course_reviews_low_trust_level_requires_review: "Users at or below this trust level submit course reviews as pending."
+  course_reviews:
+    errors:
+      login_required: "You must be logged in to publish a course review."
+      not_found: "Course review record was not found."
+      invalid_course: "Course is required."
+      invalid_teacher: "Teacher is required."
+      invalid_review: "Course review could not be saved."

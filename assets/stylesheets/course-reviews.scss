@@ -1,0 +1,114 @@
+.course-reviews-page {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.course-reviews-header,
+.course-reviews-filters,
+.course-review-card-meta,
+.course-review-summary-grid,
+.course-review-header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.course-reviews-header {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.course-reviews-filters {
+  margin-bottom: 1rem;
+}
+
+.course-reviews-search {
+  min-width: 18rem;
+}
+
+.course-review-muted {
+  color: var(--primary-medium);
+  font-size: var(--font-down-1);
+}
+
+.course-review-pill,
+.course-review-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding: 0 0.45rem;
+  margin: 0.1rem;
+  border-radius: 3px;
+  background: var(--primary-low);
+  color: var(--primary-high);
+  font-size: var(--font-down-1);
+}
+
+.course-review-summary,
+.course-review-card,
+.course-review-topic-summary,
+.course-review-composer-form,
+.course-review-admin-box {
+  border: 1px solid var(--primary-low);
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: var(--secondary);
+}
+
+.course-review-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 720px;
+}
+
+.course-review-composer-form .course-review-form {
+  margin-top: 0.75rem;
+}
+
+.course-review-form label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.course-review-form fieldset {
+  border: 1px solid var(--primary-low);
+  border-radius: 4px;
+  padding: 0.75rem;
+}
+
+.course-review-check {
+  display: inline-flex !important;
+  grid-template-columns: none !important;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 1rem;
+}
+
+.course-review-one-line {
+  font-weight: 600;
+}
+
+.course-review-actions,
+.course-review-merge-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.course-review-empty {
+  padding: 1rem;
+  color: var(--primary-medium);
+}
+
+@media (max-width: 640px) {
+  .course-reviews-search,
+  .course-reviews-filters select,
+  .course-reviews-filters button {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,10 @@
+plugins:
+  course_reviews_enabled:
+    default: true
+    client: true
+  course_reviews_category_slug:
+    default: "course-reviews"
+    client: true
+  course_reviews_low_trust_level_requires_review:
+    default: 1
+    client: false

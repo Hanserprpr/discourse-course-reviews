@@ -1,0 +1,21 @@
+en:
+  js:
+    course_reviews:
+      nav_label: "Course Reviews"
+      title: "Course Reviews"
+      search_placeholder: "Search courses, teachers, or departments"
+      new_review: "New course review"
+      course: "Course"
+      teacher: "Teacher"
+      term: "Term"
+      department: "Department"
+      course_type: "Course type"
+      recommendation: "Recommendation"
+      workload: "Workload"
+      difficulty: "Difficulty"
+      attendance: "Attendance"
+      assessment_methods: "Assessment"
+      suitable_for: "Suitable for"
+      one_line_advice: "One-line advice"
+      detail_text: "Detailed review"
+      submit: "Publish review"
