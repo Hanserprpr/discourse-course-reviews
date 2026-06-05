@@ -228,76 +228,114 @@ export default class CourseReviewForm extends Component {
     {{/if}}
 
     <form class="course-review-form" {{on "submit" this.submit}}>
-      <label>课程
+      <div class="course-review-field">
+        <label for="course-review-course-name">课程</label>
         <input
+          id="course-review-course-name"
           value={{this.course_name}}
           list="course-review-course-options"
           required
           {{on "input" this.searchCourses}}
           {{on "change" this.selectCourse}}
         />
-      </label>
+      </div>
       <datalist id="course-review-course-options">
         {{#each this.courseOptions as |course|}}
           <option value={{course.name}}>{{course.department}}</option>
         {{/each}}
       </datalist>
 
-      <label>授课老师
+      <div class="course-review-field">
+        <label for="course-review-teacher-name">授课老师</label>
         <input
+          id="course-review-teacher-name"
           value={{this.teacher_name}}
           list="course-review-teacher-options"
           required
           {{on "input" this.searchTeachers}}
           {{on "change" this.selectTeacher}}
         />
-      </label>
+      </div>
       <datalist id="course-review-teacher-options">
         {{#each this.teacherOptions as |teacher|}}
           <option value={{teacher.name}}>{{teacher.department}}</option>
         {{/each}}
       </datalist>
-      <label>学院
-        <input value={{this.department}} {{on "input" (fn this.setValue "department")}} />
-      </label>
-      <label>学期
+
+      <div class="course-review-field">
+        <label for="course-review-department">学院</label>
         <input
+          id="course-review-department"
+          value={{this.department}}
+          {{on "input" (fn this.setValue "department")}}
+        />
+      </div>
+
+      <div class="course-review-field">
+        <label for="course-review-term">学期</label>
+        <input
+          id="course-review-term"
           value={{this.term}}
           placeholder="例如 2026春"
           required
           {{on "input" (fn this.setValue "term")}}
         />
-      </label>
+      </div>
 
-      <label>课程类型
-        <select value={{this.course_type}} {{on "change" (fn this.setValue "course_type")}}>
+      <div class="course-review-field">
+        <label for="course-review-course-type">课程类型</label>
+        <select
+          id="course-review-course-type"
+          value={{this.course_type}}
+          {{on "change" (fn this.setValue "course_type")}}
+        >
           {{#each this.courseTypes as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
         </select>
-      </label>
+      </div>
 
-      <label>是否推荐
-        <select value={{this.recommendation}} {{on "change" (fn this.setValue "recommendation")}}>
+      <div class="course-review-field">
+        <label for="course-review-recommendation">是否推荐</label>
+        <select
+          id="course-review-recommendation"
+          value={{this.recommendation}}
+          {{on "change" (fn this.setValue "recommendation")}}
+        >
           {{#each this.recommendations as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
         </select>
-      </label>
+      </div>
 
-      <label>工作量
-        <select value={{this.workload}} {{on "change" (fn this.setValue "workload")}}>
+      <div class="course-review-field">
+        <label for="course-review-workload">工作量</label>
+        <select
+          id="course-review-workload"
+          value={{this.workload}}
+          {{on "change" (fn this.setValue "workload")}}
+        >
           {{#each this.levels as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
         </select>
-      </label>
+      </div>
 
-      <label>难度
-        <select value={{this.difficulty}} {{on "change" (fn this.setValue "difficulty")}}>
+      <div class="course-review-field">
+        <label for="course-review-difficulty">难度</label>
+        <select
+          id="course-review-difficulty"
+          value={{this.difficulty}}
+          {{on "change" (fn this.setValue "difficulty")}}
+        >
           {{#each this.difficulties as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
         </select>
-      </label>
+      </div>
 
-      <label>点名
-        <select value={{this.attendance}} {{on "change" (fn this.setValue "attendance")}}>
+      <div class="course-review-field">
+        <label for="course-review-attendance">点名</label>
+        <select
+          id="course-review-attendance"
+          value={{this.attendance}}
+          {{on "change" (fn this.setValue "attendance")}}
+        >
           {{#each this.attendanceOptions as |item|}}<option value={{item.value}}>{{item.label}}</option>{{/each}}
         </select>
-      </label>
+      </div>
 
       <fieldset>
         <legend>考核方式</legend>
@@ -319,16 +357,24 @@ export default class CourseReviewForm extends Component {
         {{/each}}
       </fieldset>
 
-      <label>一句话建议
+      <div class="course-review-field">
+        <label for="course-review-one-line-advice">一句话建议</label>
         <input
+          id="course-review-one-line-advice"
           value={{this.one_line_advice}}
           required
           {{on "input" (fn this.setValue "one_line_advice")}}
         />
-      </label>
-      <label>详细评价
-        <textarea value={{this.detail_text}} {{on "input" (fn this.setValue "detail_text")}}></textarea>
-      </label>
+      </div>
+
+      <div class="course-review-field">
+        <label for="course-review-detail-text">详细评价</label>
+        <textarea
+          id="course-review-detail-text"
+          value={{this.detail_text}}
+          {{on "input" (fn this.setValue "detail_text")}}
+        ></textarea>
+      </div>
 
       <button class="btn btn-primary" type="submit" disabled={{this.saving}}>
         {{if this.saving "提交中..." "发布评价"}}
