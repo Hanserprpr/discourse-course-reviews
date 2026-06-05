@@ -1,6 +1,5 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { Input, Textarea } from "@ember/component";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
@@ -257,8 +256,17 @@ export default class CourseReviewForm extends Component {
           <option value={{teacher.name}}>{{teacher.department}}</option>
         {{/each}}
       </datalist>
-      <label>学院<Input @value={{this.department}} /></label>
-      <label>学期<Input @value={{this.term}} placeholder="例如 2026春" required={{true}} /></label>
+      <label>学院
+        <input value={{this.department}} {{on "input" (fn this.setValue "department")}} />
+      </label>
+      <label>学期
+        <input
+          value={{this.term}}
+          placeholder="例如 2026春"
+          required
+          {{on "input" (fn this.setValue "term")}}
+        />
+      </label>
 
       <label>课程类型
         <select value={{this.course_type}} {{on "change" (fn this.setValue "course_type")}}>
@@ -310,8 +318,16 @@ export default class CourseReviewForm extends Component {
         {{/each}}
       </fieldset>
 
-      <label>一句话建议<Input @value={{this.one_line_advice}} required={{true}} /></label>
-      <label>详细评价<Textarea @value={{this.detail_text}} /></label>
+      <label>一句话建议
+        <input
+          value={{this.one_line_advice}}
+          required
+          {{on "input" (fn this.setValue "one_line_advice")}}
+        />
+      </label>
+      <label>详细评价
+        <textarea value={{this.detail_text}} {{on "input" (fn this.setValue "detail_text")}}></textarea>
+      </label>
 
       <button class="btn btn-primary" type="submit" disabled={{this.saving}}>
         {{if this.saving "提交中..." "发布评价"}}
